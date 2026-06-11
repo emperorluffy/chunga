@@ -1,0 +1,69 @@
+@use "../abstract/variables" as *;
+.navbar {
+  background-color: rgba($color-dark-bg, 0.95);
+  border-bottom: 1px solid rgba($color-bronze, 0.2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+
+  &__container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: $color-white;
+    text-decoration: none;
+    font-size: 1.25rem;
+
+    span {
+      color: $color-gold-brown;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: $color-silver;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-gold-brown;
+    }
+  }
+
+  &__btn {
+    background-color: transparent;
+    border: 1px solid $color-gold-brown;
+    color: $color-gold-brown;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $color-gold-brown;
+      color: $color-white;
+    }
+  }
+}

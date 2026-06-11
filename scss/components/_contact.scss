@@ -1,0 +1,102 @@
+@use "sass:color";
+@use "../abstract/variables" as *;
+.contact {
+  padding: 8rem 2rem;
+
+  &__container {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  &__card {
+    background: linear-gradient(145deg, $color-card-bg 0%, #24211d 100%);
+    border: 1px solid rgba($color-gold-brown, 0.2);
+    border-radius: 8px;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      padding: 2.5rem;
+      gap: 2.5rem;
+    }
+  }
+
+  &__heading {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  &__text {
+    color: $color-text-muted;
+    margin-bottom: 2rem;
+  }
+
+  &__compliance {
+    display: inline-block;
+    color: $color-gold-brown;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__submit {
+    background-color: $color-gold-brown;
+    color: $color-white;
+    border: none;
+    padding: 1.1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($color-gold-brown, $lightness: -5%);
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-silver;
+    font-weight: 500;
+  }
+
+  &__input,
+  &__select {
+    background-color: rgba($color-dark-bg, 0.6);
+    border: 1px solid rgba($color-bronze, 0.4);
+    padding: 0.9rem 1.2rem;
+    border-radius: 4px;
+    color: $color-white;
+    font-family: $font-sans;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: $color-gold-brown;
+    }
+  }
+
+  &__select {
+    appearance: none;
+    cursor: pointer;
+  }
+}

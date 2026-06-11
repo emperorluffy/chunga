@@ -1,0 +1,27 @@
+$color-dark-bg: #12110f; // Deep institutional dark charcoal
+$color-card-bg: #1c1a17; // Elevated dark tone
+$color-bronze: #8c6239; // Accent metallic bronze
+$color-gold-brown: #c49a45; // High-contrast CTA color
+$color-silver: #e6e8ea; // Light text/element grey
+$color-white: #ffffff;
+$color-text-muted: #a0a5aa;
+
+$font-sans: "Inter", sans-serif;
+$max-width: 1200px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-sans;
+  background-color: $color-dark-bg;
+  color: $color-white;
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+}

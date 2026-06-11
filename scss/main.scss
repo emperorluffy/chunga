@@ -1,0 +1,11 @@
+// scss/main.scss
+
+@use "abstract/variables" as *;
+@use "abstract/mixins" as *; // If you are using any custom mixins
+
+@use "components/navbar";
+@use "components/hero";
+@use "components/benefits";
+@use "components/process";
+@use "components/contact";
+@use "components/footer";

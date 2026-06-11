@@ -1,0 +1,92 @@
+@use "sass:color";
+@use "../abstract/variables" as *;
+.hero {
+  padding: 12rem 2rem 8rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba($color-dark-bg, 0.9) 0%,
+    rgba($color-card-bg, 0.8) 100%
+  );
+  border-bottom: 1px solid rgba($color-bronze, 0.15);
+
+  &__container {
+    max-width: $max-width;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__content {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  &__badge {
+    display: inline-block;
+    color: $color-gold-brown;
+    border: 1px solid rgba($color-gold-brown, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    color: $color-text-muted;
+    margin-bottom: 3rem;
+  }
+
+  &__cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
+
+  &__btn {
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+
+    &--primary {
+      background-color: $color-gold-brown;
+      color: $color-white;
+
+      &:hover {
+        background-color: color.adjust($color-gold-brown, $lightness: -5%);
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      border: 1px solid $color-bronze;
+      color: $color-white;
+
+      &:hover {
+        background-color: rgba($color-bronze, 0.1);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
