@@ -11,6 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+      defer
+    ></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <nav class="navbar">
@@ -18,7 +23,19 @@
         <a href="#" class="navbar__brand">HEARTH<span>REALTY</span></a>
         <div class="navbar__links">
           <a href="#benefits" class="navbar__link">Why Us</a>
-          <a href="#services" class="navbar__link">Services</a>
+
+          <div class="navbar__dropdown">
+            <button class="navbar__link dropdown-trigger">Services</button>
+
+            <div class="dropdown-menu">
+              <a href="#valuation" class="dropdown-item">Property Valuation</a>
+              <a href="#management" class="dropdown-item"
+                >Property Management</a
+              >
+              <a href="#consulting" class="dropdown-item">Consultation</a>
+            </div>
+          </div>
+
           <a href="#process" class="navbar__link">How It Works</a>
           <a href="#contact" class="navbar__btn">Enroll with us</a>
         </div>
@@ -67,7 +84,7 @@
             <p class="benefit-card__text">
               Integrated Mobile Money (MTN/Airtel MoMo) and direct bank
               transfers, automatically routed straight to your account every
-              month.
+              month on time.
             </p>
           </div>
           <div class="benefit-card">

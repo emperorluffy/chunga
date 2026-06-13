@@ -77,6 +77,49 @@ body {
   color: #ffffff;
 }
 
+.navbar__dropdown {
+  position: relative;
+}
+.navbar__dropdown .dropdown-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1a1816;
+  border: 1px solid rgba(196, 154, 69, 0.2);
+  border-radius: 4px;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.dropdown-menu.is-active {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  color: #ffffff;
+  padding: 0.75rem 1.2rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+.dropdown-item:hover {
+  background-color: rgba(196, 154, 69, 0.1);
+  color: #c49a45;
+}
+
 .hero {
   padding: 12rem 2rem 8rem 2rem;
   background: linear-gradient(135deg, rgba(18, 17, 15, 0.9) 0%, rgba(28, 26, 23, 0.8) 100%);
@@ -262,9 +305,15 @@ body {
 .contact {
   padding: 8rem 2rem;
 }
+@media (max-width: 480px) {
+  .contact {
+    padding: 4rem 1rem;
+  }
+}
 .contact__container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 .contact__card {
   background: linear-gradient(145deg, #1c1a17 0%, #24211d 100%);
@@ -274,6 +323,7 @@ body {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 4rem;
+  box-sizing: border-box;
 }
 @media (max-width: 992px) {
   .contact__card {
@@ -282,10 +332,21 @@ body {
     gap: 2.5rem;
   }
 }
+@media (max-width: 480px) {
+  .contact__card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
 .contact__heading {
   font-size: 2.5rem;
   line-height: 1.2;
   margin-bottom: 1.5rem;
+}
+@media (max-width: 480px) {
+  .contact__heading {
+    font-size: 1.8rem;
+  }
 }
 .contact__text {
   color: #a0a5aa;

@@ -2,10 +2,15 @@
 @use "../abstract/variables" as *;
 .contact {
   padding: 8rem 2rem;
+  // Reduce section padding on mobile so it doesn't squish the card
+  @media (max-width: 480px) {
+    padding: 4rem 1rem;
+  }
 
   &__container {
     max-width: $max-width;
     margin: 0 auto;
+    width: 100%;
   }
 
   &__card {
@@ -16,11 +21,17 @@
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
+    box-sizing: border-box;
 
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
       padding: 2.5rem;
       gap: 2.5rem;
+    }
+    // NEW: Tighter padding for mobile phones so the box doesn't overflow
+    @media (max-width: 480px) {
+      padding: 1.5rem;
+      gap: 1.5rem;
     }
   }
 
@@ -28,6 +39,11 @@
     font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+
+    // NEW: Shrink font size on small screens
+    @media (max-width: 480px) {
+      font-size: 1.8rem;
+    }
   }
 
   &__text {
