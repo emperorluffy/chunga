@@ -20,13 +20,13 @@
   <body>
     <nav class="navbar">
       <div class="navbar__container">
-        <a href="#" class="navbar__brand">HEARTH<span>REALTY</span></a>
+        <a href="#" id="brand-home" class="navbar__brand"
+          >HEARTH<span>REALTY</span></a
+        >
         <div class="navbar__links">
-          <a href="#benefits" class="navbar__link">Why Us</a>
-
-          <div class="navbar__dropdown">
+          <a href="#benefits" class="navbar__link main-web-link">Why Us</a>
+          <div class="navbar__dropdown main-web-link">
             <button class="navbar__link dropdown-trigger">Services</button>
-
             <div class="dropdown-menu">
               <a href="#valuation" class="dropdown-item">Property Valuation</a>
               <a href="#management" class="dropdown-item"
@@ -35,175 +35,466 @@
               <a href="#consulting" class="dropdown-item">Consultation</a>
             </div>
           </div>
+          <a href="#process" class="navbar__link main-web-link">How It Works</a>
+          <a href="#contact" class="navbar__btn main-web-link"
+            >Enroll with us</a
+          >
 
-          <a href="#process" class="navbar__link">How It Works</a>
-          <a href="#contact" class="navbar__btn">Enroll with us</a>
+          <button id="btn-logout" class="navbar__btn style-hidden">
+            Sign Out
+          </button>
         </div>
       </div>
     </nav>
 
-    <header class="hero">
-      <div class="hero__container">
-        <div class="hero__content">
-          <span class="hero__badge">Zambian Real Estate Excellence</span>
-          <h1 class="hero__title">
-            Hands-Free Property Management For Smart Landlords
-          </h1>
-          <p class="hero__subtitle">
-            From rigorous tenant vetting to automated rent collection, we
-            maximize your rental yield while you enjoy total peace of
-            mind—whether you are in Lusaka or the Diaspora.
-          </p>
-          <div class="hero__cta-group">
-            <a href="#contact" class="hero__btn hero__btn--primary"
-              >Get Free Rental Valuation</a
-            >
-            <a href="#services" class="hero__btn hero__btn--secondary"
-              >Explore Services</a
-            >
+    <div id="view-marketing-wrapper">
+      <header class="hero">
+        <div class="hero__container">
+          <div class="hero__content">
+            <span class="hero__badge">Zambian Real Estate Excellence</span>
+            <h1 class="hero__title">
+              Hands-Free Property Management For Smart Landlords
+            </h1>
+            <p class="hero__subtitle">
+              From rigorous tenant vetting to automated rent collection, we
+              maximize your rental yield while you enjoy total peace of
+              mind—whether you are in Lusaka or the Diaspora.
+            </p>
+            <div class="hero__cta-group">
+              <a href="#contact" class="hero__btn hero__btn--primary"
+                >Get Free Rental Valuation</a
+              >
+              <a href="#benefits" class="hero__btn hero__btn--secondary"
+                >Explore Services</a
+              >
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <section id="benefits" class="benefits">
-      <div class="benefits__container">
-        <div class="benefits__header">
-          <h2 class="benefits__heading">
-            Engineered to Protect Your Investments
-          </h2>
-          <p class="benefits__subheading">
-            We solve the classic headaches of property ownership through strict
-            systems and transparent communication.
-          </p>
-        </div>
-        <div class="benefits__grid">
-          <div class="benefit-card">
-            <div class="benefit-card__icon">💵</div>
-            <h3 class="benefit-card__title">Zero-Friction Rent Collection</h3>
-            <p class="benefit-card__text">
-              Integrated Mobile Money (MTN/Airtel MoMo) and direct bank
-              transfers, automatically routed straight to your account every
-              month on time.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-card__icon">🛡️</div>
-            <h3 class="benefit-card__title">Strict Tenant Vetting</h3>
-            <p class="benefit-card__text">
-              We run income verification, background checks, and references to
-              safeguard your property against payment defaults.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-card__icon">🌍</div>
-            <h3 class="benefit-card__title">Real-Time Diaspora Portal</h3>
-            <p class="benefit-card__text">
-              Log in from anywhere globally to view detailed financial tracking,
-              maintenance logs, and live occupancy details.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="process">
-      <div class="process__container">
-        <div class="process__header">
-          <h2 class="process__heading">Four Steps to Absolute Peace of Mind</h2>
-        </div>
-        <div class="process__timeline">
-          <div class="process-step">
-            <div class="process-step__number">01</div>
-            <h3 class="process-step__title">Property Assessment</h3>
-            <p class="process-step__text">
-              We analyze location, market data, and assets to determine an
-              optimal, highly competitive monthly rental value.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number">02</div>
-            <h3 class="process-step__title">Marketing & Placement</h3>
-            <p class="process-step__text">
-              Your asset gets priority placement across premium digital channels
-              to attract high-quality, reliable prospects.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number">03</div>
-            <h3 class="process-step__title">Legal Agreements</h3>
-            <p class="process-step__text">
-              We draft airtight lease agreements fully compliant with the
-              Zambian Landlord and Tenant Act.
-            </p>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number">04</div>
-            <h3 class="process-step__title">Passive Management</h3>
-            <p class="process-step__text">
-              We field 100% of maintenance requests, handle payments, and
-              disburse your profits effortlessly.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="contact__container">
-        <div class="contact__card">
-          <div class="contact__info">
-            <h2 class="contact__heading">
-              Stop Chasing Rent. Start Scaling Your Portfolio.
+      <section id="benefits" class="benefits">
+        <div class="benefits__container">
+          <div class="benefits__header">
+            <h2 class="benefits__heading">
+              Engineered to Protect Your Investments
             </h2>
-            <p class="contact__text">
-              Enter your details to receive a free, data-driven rental valuation
-              and management consultation for your property.
+            <p class="benefits__subheading">
+              We solve the classic headaches of property ownership through
+              strict systems and transparent communication.
             </p>
-            <div class="contact__compliance">
-              ✓ PACRA Registered & Fully Compliant
+          </div>
+          <div class="benefits__grid">
+            <div class="benefit-card">
+              <div class="benefit-card__icon">💵</div>
+              <h3 class="benefit-card__title">Zero-Friction Rent Collection</h3>
+              <p class="benefit-card__text">
+                Integrated Mobile Money (MTN/Airtel MoMo) and direct bank
+                transfers, automatically routed straight to your account every
+                month on time.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-card__icon">🛡️</div>
+              <h3 class="benefit-card__title">Strict Tenant Vetting</h3>
+              <p class="benefit-card__text">
+                We run income verification, background checks, and references to
+                safeguard your property against payment defaults.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-card__icon">🌍</div>
+              <h3 class="benefit-card__title">Real-Time Diaspora Portal</h3>
+              <p class="benefit-card__text">
+                Log in from anywhere globally to view detailed financial
+                tracking, maintenance logs, and live occupancy details.
+              </p>
             </div>
           </div>
-          <form class="contact__form">
-            <div class="form-group">
-              <label class="form-group__label">Your Full Name</label>
-              <input
-                type="text"
-                class="form-group__input"
-                placeholder="e.g., Mwansa Mwape"
-                required
-              />
+        </div>
+      </section>
+
+      <section id="process" class="process">
+        <div class="process__container">
+          <div class="process__header">
+            <h2 class="process__heading">
+              Four Steps to Absolute Peace of Mind
+            </h2>
+          </div>
+          <div class="process__timeline">
+            <div class="process-step">
+              <div class="process-step__number">01</div>
+              <h3 class="process-step__title">Property Assessment</h3>
+              <p class="process-step__text">
+                We analyze location, market data, and assets to determine an
+                optimal, highly competitive monthly rental value.
+              </p>
             </div>
-            <div class="form-group">
-              <label class="form-group__label">Email Address</label>
-              <input
-                type="email"
-                class="form-group__input"
-                placeholder="name@domain.com"
-                required
-              />
+            <div class="process-step">
+              <div class="process-step__number">02</div>
+              <h3 class="process-step__title">Marketing & Placement</h3>
+              <p class="process-step__text">
+                Your asset gets priority placement across premium digital
+                channels to attract high-quality, reliable prospects.
+              </p>
             </div>
-            <div class="form-group">
-              <label class="form-group__label">Property Location</label>
-              <select class="form-group__select" required>
-                <option value="" disabled selected>Select location</option>
-                <option value="lusaka">
-                  Lusaka (Kabulonga, Rhodespark, etc.)
-                </option>
-                <option value="copperbelt">
-                  Copperbelt (Ndola, Kitwe, etc.)
-                </option>
-                <option value="livingstone">Livingstone</option>
-                <option value="other">Other</option>
-              </select>
+            <div class="process-step">
+              <div class="process-step__number">03</div>
+              <h3 class="process-step__title">Legal Agreements</h3>
+              <p class="process-step__text">
+                We draft airtight lease agreements fully compliant with the
+                Zambian Landlord and Tenant Act.
+              </p>
             </div>
-            <button type="submit" class="contact__submit">
-              Request Free Valuation
-            </button>
-          </form>
+            <div class="process-step">
+              <div class="process-step__number">04</div>
+              <h3 class="process-step__title">Passive Management</h3>
+              <p class="process-step__text">
+                We field 100% of maintenance requests, handle payments, and
+                disburse your profits effortlessly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact__container">
+          <div class="contact__card">
+            <div class="contact__info">
+              <div id="auth-login-box">
+                <h2 class="contact__heading" style="margin-bottom: 0.5rem">
+                  Welcome to Hearth Realty
+                </h2>
+                <p class="contact__text" style="margin-bottom: 1.5rem">
+                  Access your Zambian property portal
+                </p>
+                <form id="form-login" class="contact__form">
+                  <div class="form-group">
+                    <label class="form-group__label"
+                      >Email or Secure Tenant ID</label
+                    >
+                    <input
+                      type="text"
+                      id="login-email"
+                      class="form-group__input"
+                      placeholder="Landlord Email OR Alpha-Numeric Tenant ID"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    id="btn-login-submit"
+                    class="contact__submit"
+                  >
+                    Enter Dashboard
+                  </button>
+                </form>
+                <p
+                  class="contact__text"
+                  style="margin-top: 1.5rem; font-size: 0.9rem"
+                >
+                  Don't have an account?
+                  <span
+                    id="go-to-register"
+                    style="color: #c49a45; cursor: pointer; font-weight: 600"
+                    >Register here</span
+                  >
+                </p>
+              </div>
+
+              <div id="auth-register-box" class="style-hidden">
+                <h2 class="contact__heading" style="margin-bottom: 0.5rem">
+                  Join Hearth Realty
+                </h2>
+                <p class="contact__text" style="margin-bottom: 1.5rem">
+                  Create your secure account profile
+                </p>
+                <form id="form-register" class="contact__form">
+                  <div class="form-group">
+                    <label class="form-group__label"
+                      >I am registering as a:</label
+                    >
+                    <select id="reg-role" class="form-group__select" required>
+                      <option value="landlord">
+                        Landlord / Property Owner
+                      </option>
+                      <option value="tenant">Tenant Resident</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-group__label">Full Name</label>
+                    <input
+                      type="text"
+                      id="reg-name"
+                      class="form-group__input"
+                      placeholder="e.g., Mwansa Mwape"
+                      required
+                    />
+                  </div>
+                  <div class="form-group id-conditional-field">
+                    <label class="form-group__label">Email Address</label>
+                    <input
+                      type="email"
+                      id="reg-email"
+                      class="form-group__input"
+                      placeholder="name@domain.com"
+                    />
+                  </div>
+                  <div class="form-group id-conditional-field">
+                    <label class="form-group__label"
+                      >Primary Operation Base</label
+                    >
+                    <input
+                      type="text"
+                      id="reg-location"
+                      class="form-group__input"
+                      placeholder="e.g., Lusaka"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    id="btn-register-submit"
+                    class="contact__submit"
+                  >
+                    Register Account
+                  </button>
+                </form>
+                <p
+                  class="contact__text"
+                  style="margin-top: 1.5rem; font-size: 0.9rem"
+                >
+                  Already have an account?
+                  <span
+                    id="go-to-login"
+                    style="color: #c49a45; cursor: pointer; font-weight: 600"
+                    >Log in here</span
+                  >
+                </p>
+              </div>
+            </div>
+
+            <form id="form-valuation" class="contact__form">
+              <h3
+                class="benefit-card__title"
+                style="color: #ffffff; margin-bottom: 0.5rem"
+              >
+                Stop Chasing Rent. Start Scaling Your Portfolio.
+              </h3>
+              <p
+                class="contact__text"
+                style="margin-bottom: 1rem; font-size: 0.9rem"
+              >
+                Enter your details to receive a free, data-driven rental
+                valuation and management consultation.
+              </p>
+              <div class="form-group">
+                <label class="form-group__label">Your Full Name</label>
+                <input
+                  type="text"
+                  id="val-name"
+                  class="form-group__input"
+                  placeholder="e.g., Mwansa Mwape"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">Email Address</label>
+                <input
+                  type="email"
+                  id="val-email"
+                  class="form-group__input"
+                  placeholder="name@domain.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">Property Location</label>
+                <select id="val-location" class="form-group__select" required>
+                  <option value="" disabled selected>Select location</option>
+                  <option value="lusaka">
+                    Lusaka (Kabulonga, Rhodespark, etc.)
+                  </option>
+                  <option value="copperbelt">
+                    Copperbelt (Ndola, Kitwe, etc.)
+                  </option>
+                  <option value="livingstone">Livingstone</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <button type="submit" class="contact__submit">
+                Request Free Valuation
+              </button>
+              <div class="contact__compliance" style="margin-top: 0.5rem">
+                ✓ PACRA Registered & Fully Compliant
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <main
+      id="view-landlord"
+      class="benefits style-hidden"
+      style="margin-top: 4rem"
+    >
+      <div class="benefits__container">
+        <div
+          class="benefits__header"
+          style="
+            text-align: left;
+            border-bottom: 1px solid rgba(140, 98, 57, 0.2);
+            padding-bottom: 2rem;
+          "
+        >
+          <h2 id="landlord-name" class="benefits__heading">
+            Welcome Back, Landlord
+          </h2>
+          <p id="landlord-meta" class="contact__compliance">
+            Operations Base: --
+          </p>
+        </div>
+
+        <div
+          class="benefits__grid"
+          style="margin-top: 2rem; margin-bottom: 3rem"
+        >
+          <div class="benefit-card" style="padding: 2rem">
+            <h3
+              style="
+                color: #a0a5aa;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+              "
+            >
+              Total Collected
+            </h3>
+            <p
+              id="ll-total-paid"
+              class="benefits__heading"
+              style="color: #2ec4b6; margin-top: 0.5rem; font-size: 2.5rem"
+            >
+              ZMW 0.00
+            </p>
+          </div>
+          <div class="benefit-card" style="padding: 2rem">
+            <h3
+              style="
+                color: #a0a5aa;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+              "
+            >
+              Total Arrears (Balance)
+            </h3>
+            <p
+              id="ll-total-balance"
+              class="benefits__heading"
+              style="color: #e71d36; margin-top: 0.5rem; font-size: 2.5rem"
+            >
+              ZMW 0.00
+            </p>
+          </div>
+        </div>
+
+        <h3 class="benefit-card__title" style="margin-bottom: 1rem">
+          Managed Tenants & Ledgers
+        </h3>
+        <div
+          style="
+            width: 100%;
+            overflow-x: auto;
+            background: #1c1a17;
+            border-radius: 6px;
+            border: 1px solid rgba(140, 98, 57, 0.15);
+          "
+        >
+          <table
+            style="
+              width: 100%;
+              border-collapse: collapse;
+              text-align: left;
+              font-size: 0.95rem;
+            "
+          >
+            <thead>
+              <tr
+                style="
+                  border-bottom: 1px solid rgba(140, 98, 57, 0.2);
+                  background: rgba(140, 98, 57, 0.05);
+                "
+              >
+                <th style="padding: 1.2rem">Tenant Name</th>
+                <th style="padding: 1.2rem">Tenant ID</th>
+                <th style="padding: 1.2rem">Total Paid</th>
+                <th style="padding: 1.2rem">Outstanding Balance</th>
+              </tr>
+            </thead>
+            <tbody id="ll-tenant-rows"></tbody>
+          </table>
         </div>
       </div>
-    </section>
+    </main>
+
+    <main
+      id="view-tenant"
+      class="benefits style-hidden"
+      style="margin-top: 4rem"
+    >
+      <div class="benefits__container" style="max-width: 800px">
+        <div
+          class="benefits__header"
+          style="
+            text-align: left;
+            border-bottom: 1px solid rgba(140, 98, 57, 0.2);
+            padding-bottom: 2rem;
+          "
+        >
+          <h2 id="tenant-heading" class="benefits__heading">Resident Portal</h2>
+          <p class="contact__compliance">
+            ✓ Verifiable Tenant Statement Account
+          </p>
+        </div>
+        <div class="benefits__grid" style="margin-top: 2rem">
+          <div class="benefit-card" style="padding: 2rem">
+            <h3
+              style="
+                color: #a0a5aa;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+              "
+            >
+              Total Rent Paid
+            </h3>
+            <p
+              id="tn-paid"
+              class="benefits__heading"
+              style="color: #2ec4b6; margin-top: 0.5rem"
+            >
+              ZMW 0.00
+            </p>
+          </div>
+          <div class="benefit-card" style="padding: 2rem">
+            <h3
+              style="
+                color: #a0a5aa;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+              "
+            >
+              Current Balance Due
+            </h3>
+            <p
+              id="tn-balance"
+              class="benefits__heading"
+              style="color: #e71d36; margin-top: 0.5rem"
+            >
+              ZMW 0.00
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <footer class="footer">
       <p>&copy; 2026 Hearth Realty Property Management. All rights reserved.</p>

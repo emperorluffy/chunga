@@ -71,6 +71,7 @@ body {
   font-size: 0.95rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .navbar__btn:hover {
   background-color: #c49a45;
@@ -186,7 +187,7 @@ body {
   color: #ffffff;
 }
 .hero__btn--primary:hover {
-  background-color: rgb(181.8244897959, 140.7673469388, 57.6755102041);
+  background-color: rgb(181.82, 140.76, 57.67);
   transform: translateY(-2px);
 }
 .hero__btn--secondary {
@@ -375,7 +376,7 @@ body {
   transition: background-color 0.3s ease;
 }
 .contact__submit:hover {
-  background-color: rgb(181.8244897959, 140.7673469388, 57.6755102041);
+  background-color: rgb(181.82, 140.76, 57.67);
 }
 
 .form-group {
@@ -417,4 +418,34 @@ footer {
   font-size: 0.9rem;
 }
 
-/*# sourceMappingURL=style.css.map */
+/* GLOBAL LAYER MANAGEMENT SUB-SYSTEM CUSTOM ADDITIONS */
+.style-hidden {
+  display: none !important;
+}
+
+#ll-tenant-rows tr {
+  border-bottom: 1px solid rgba(140, 98, 57, 0.1);
+  transition: background-color 0.2s ease;
+}
+#ll-tenant-rows tr:hover {
+  background-color: rgba(196, 154, 69, 0.03);
+}
+#ll-tenant-rows td {
+  padding: 1.2rem;
+  color: #e6e8ea;
+}
+
+.table-empty {
+  text-align: center;
+  color: #a0a5aa !important;
+  font-style: italic;
+  padding: 3rem !important;
+}
+.value--paid {
+  color: #2ec4b6;
+  font-weight: 600;
+}
+.value--balance {
+  color: #e71d36;
+  font-weight: 600;
+}
