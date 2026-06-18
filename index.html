@@ -189,6 +189,20 @@
                     Enter Dashboard
                   </button>
                 </form>
+
+                <div style="margin-top: 1rem; text-align: left">
+                  <span
+                    id="link-forgot-credentials"
+                    style="
+                      color: #c49a45;
+                      cursor: pointer;
+                      font-size: 0.9rem;
+                      font-weight: 500;
+                    "
+                    >Forgot ID or Email?</span
+                  >
+                </div>
+
                 <p
                   class="contact__text"
                   style="margin-top: 1.5rem; font-size: 0.9rem"
@@ -495,6 +509,39 @@
         </div>
       </div>
     </main>
+
+    <div id="modal-recovery" class="modal-overlay style-hidden">
+      <div class="modal-card">
+        <button id="btn-close-recovery" class="modal-card__close">
+          &times;
+        </button>
+        <h3 class="modal-card__title">Credential Recovery</h3>
+        <p class="modal-card__subtitle">
+          Enter your registered full name to retrieve your login details
+          instantly.
+        </p>
+
+        <form id="form-recovery" class="contact__form">
+          <div class="form-group">
+            <label class="form-group__label">Your Full Name</label>
+            <input
+              type="text"
+              id="recovery-name"
+              class="form-group__input"
+              placeholder="e.g., Mwansa Mwape"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            id="btn-recovery-submit"
+            class="contact__submit"
+          >
+            Search Registry
+          </button>
+        </form>
+      </div>
+    </div>
 
     <footer class="footer">
       <p>&copy; 2026 Hearth Realty Property Management. All rights reserved.</p>
