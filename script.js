@@ -55,16 +55,14 @@ class DatabaseService {
   }
 
   async insertValuationRequest(fullName, email, propertyLocation) {
-    return await this.db
-      .from('valuation_requests')
-      .insert([
-        {
-          full_name: fullName,
-          email: email,
-          property_location: propertyLocation,
-          status: 'new',
-        },
-      ]);
+    return await this.db.from('valuation_requests').insert([
+      {
+        full_name: fullName,
+        email: email,
+        property_location: propertyLocation,
+        status: 'new',
+      },
+    ]);
   }
 
   async getLandlordByEmail(email) {
@@ -555,3 +553,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   app.init();
 });
+
+// Function to display the consolidated modal
+function showRegistrationModal(role, token, landlordEmail) {
+  const modal = document.getElementById('customModal');
+  const modalBody = document.getElementById('modalBody');
+  const closeBtn = document.getElementById('modalCloseBtn');
+
+  // Build the clean HTML structure inside the text box
+  modalBody.innerHTML = `
+    <p><strong>Role:</strong> ${role}</p>
+    <p><strong>Secure Login ID:</strong> <span style="color: #c8a261; font-family: monospace;">${token}</span></p>
+    <p><strong>Linked Landlord:</strong> ${landlordEmail}</p>
+    <p style="font-size: 0.9rem; color: #aaa; margin-top: 15px;">
+      Use this secure alphanumeric short token to enter your portal dashboard.
+    </p>
+  `;
+
+  // Show the modal by removing the hidden class
+  modal.classList.remove('hidden');
+
+  // Close event listener
+  closeBtn.onclick = function () {
+    modal.classList.add('hidden');
+    // Optional: redirect user or clear input form fields here
+  };
+}
+
+// --- Example Usage inside your workflow ---
+// script.js triggered after Supabase finishes registry processing
+const mockRole = 'Tenant Resident';
+const mockToken = 'th7609';
+const mockLandlord = 'gakumuthomas@gmail.com';
+
+// Trigger it cleanly
+showRegistrationModal(mockRole, mockToken, mockLandlord);
