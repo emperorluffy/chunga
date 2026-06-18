@@ -79,7 +79,6 @@ class DatabaseService {
       .eq('name', name);
   }
 
-  // RECOVERY FEATURE: Look up landlord via Full Name
   async recoverLandlordByName(name) {
     return await this.db
       .from('landlords')
@@ -87,7 +86,6 @@ class DatabaseService {
       .eq('name', name);
   }
 
-  // RECOVERY FEATURE: Look up tenant via Full Name
   async recoverTenantByName(name) {
     return await this.db
       .from('tenants')
@@ -240,13 +238,112 @@ class UIService {
 }
 
 /**
- * 3. MAIN APPLICATION ENGINE CONTROLLER
+ * 3. MODAL COMPONENT SERVICE MODULE
+ * Handles showing and closing the custom account confirmation modal popup.
+ */
+class ModalService {
+  constructor() {
+    this.modal = document.getElementById('customModal');
+    this.modalBody = document.getElementById('modalBody');
+    this.closeBtn = document.getElementById('modalCloseBtn');
+
+    if (this.closeBtn) {
+      this.closeBtn.onclick = () => this.close();
+    }
+  }
+
+  show(role, token, landlordEmail) {
+    if (!this.modal || !this.modalBody) return;
+
+    this.modalBody.innerHTML = `
+      <p><strong>Role:</strong> ${role}</p>
+      <p><strong>Secure Login ID:</strong> <span style="color: #c8a261; font-family: monospace;">${token}</span></p>
+      <p><strong>Linked Landlord:</strong> ${landlordEmail}</p>
+      <p style="font-size: 0.9rem; color: #aaa; margin-top: 15px;">
+        Use this secure alphanumeric short token to enter your portal dashboard.
+      </p>
+    `;
+    this.modal.classList.remove('hidden');
+  }
+
+  close() {
+    if (this.modal) {
+      this.modal.classList.add('hidden');
+    }
+  }
+}
+
+/**
+ * 4. GEOLOCATION SERVICE MODULE
+ * Handles automated regional settings based on coordinate calculations.
+ */
+class GeoLocationService {
+  constructor(selectElementId) {
+    this.locationSelect = document.getElementById(selectElementId);
+    this.regions = {
+      lusaka: { lat: -15.4167, lon: 28.2833 },
+      copperbelt: { lat: -12.9667, lon: 28.6333 }, // Ndola/Kitwe area
+      livingstone: { lat: -17.85, lon: 25.85 },
+    };
+  }
+
+  init() {
+    if (navigator.geolocation && this.locationSelect) {
+      navigator.geolocation.getCurrentPosition(
+        position => this.calculateClosestRegion(position.coords),
+        error =>
+          console.log(
+            'Geolocation denied or failed. Falling back to manual selection.',
+          ),
+      );
+    }
+  }
+
+  getDistance(lat1, lon1, lat2, lon2) {
+    const radlat1 = (Math.PI * lat1) / 180;
+    const radlat2 = (Math.PI * lat2) / 180;
+    const theta = lon1 - lon2;
+    const radtheta = (Math.PI * theta) / 180;
+    let dist =
+      Math.sin(radlat1) * Math.sin(radlat2) +
+      Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    if (dist > 1) dist = 1;
+    dist = Math.acos(dist);
+    return dist;
+  }
+
+  calculateClosestRegion(coords) {
+    let closestRegion = 'other';
+    let minDistance = Infinity;
+
+    for (const [regionName, regionCoords] of Object.entries(this.regions)) {
+      const distance = this.getDistance(
+        coords.latitude,
+        coords.longitude,
+        regionCoords.lat,
+        regionCoords.lon,
+      );
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestRegion = regionName;
+      }
+    }
+
+    if (minDistance < 2.0) {
+      this.locationSelect.value = closestRegion;
+    }
+  }
+}
+
+/**
+ * 5. MAIN APPLICATION ENGINE CONTROLLER
  * Coordinates interaction between UI actions and Backend communications.
  */
 class AppController {
-  constructor(dbService, uiService) {
+  constructor(dbService, uiService, modalService) {
     this.dbService = dbService;
     this.uiService = uiService;
+    this.modalService = modalService;
 
     this.loginForm = document.getElementById('form-login');
     this.registerForm = document.getElementById('form-register');
@@ -308,7 +405,6 @@ class AppController {
       this.uiService.toggleConditionalFields(e.target.value);
     });
 
-    // Recovery Modal Display Triggers
     document
       .getElementById('link-forgot-credentials')
       ?.addEventListener('click', e => {
@@ -330,7 +426,6 @@ class AppController {
   }
 
   setupFormSubmissionListeners() {
-    // RECOVERY SUBMISSION ENGINE
     if (this.recoveryForm) {
       this.recoveryForm.addEventListener('submit', async e => {
         e.preventDefault();
@@ -343,34 +438,36 @@ class AppController {
         submitBtn.disabled = true;
 
         try {
-          // Look up landlords
           const { data: landlordMatch, error: llErr } =
             await this.dbService.recoverLandlordByName(searchName);
           if (llErr) throw llErr;
 
           if (landlordMatch && landlordMatch.length > 0) {
-            alert(
-              `Account Profile Found!\n\nRole: Landlord / Property Owner\nRegistered Email: ${landlordMatch[0].email}\n\nUse this email to access your tracking portal.`,
+            this.modalService.show(
+              'Landlord / Property Owner',
+              landlordMatch[0].email,
+              'N/A',
             );
             this.uiService.closeRecoveryModal();
             return;
           }
 
-          // Look up tenants
           const { data: tenantMatch, error: tnErr } =
             await this.dbService.recoverTenantByName(searchName);
           if (tnErr) throw tnErr;
 
           if (tenantMatch && tenantMatch.length > 0) {
-            alert(
-              `Account Profile Found!\n\nRole: Tenant Resident\nSecure Login ID: ${tenantMatch[0].tenant_id}\n\nUse this secure alphanumeric short token to enter your portal dashboard.`,
+            this.modalService.show(
+              'Tenant Resident',
+              tenantMatch[0].tenant_id,
+              'Lookup Complete',
             );
             this.uiService.closeRecoveryModal();
             return;
           }
 
           alert(
-            `No registered account profile found matching the name "${searchName}". Please check the spelling or ensure your account registration was completed.`,
+            `No registered account profile found matching the name "${searchName}".`,
           );
         } catch (err) {
           console.error('Credential Retrieval System Disruption:', err);
@@ -507,7 +604,7 @@ class AppController {
 
             if (!linkedLandlords || linkedLandlords.length === 0) {
               alert(
-                'The landlord name provided does not match any registered profiles. Please verify the exact spelling or ensure they sign up first.',
+                'The landlord name provided does not match any registered profiles.',
               );
               return;
             }
@@ -527,8 +624,12 @@ class AppController {
             if (error) throw error;
 
             const generatedId = newTenant[0]?.tenant_id;
-            alert(
-              `Tenant profile saved! IMPORTANT: Your friendly system Login ID token is:\n\n${generatedId}`,
+
+            // WIRED HERE: Triggers your cleanly decoupled custom configuration modal upon registry completion
+            this.modalService.show(
+              'Tenant Resident',
+              generatedId,
+              landlordVerificationName.trim(),
             );
           }
           this.registerForm.reset();
@@ -549,42 +650,11 @@ class AppController {
 document.addEventListener('DOMContentLoaded', () => {
   const dbService = new DatabaseService(supabaseClient);
   const uiService = new UIService();
-  const app = new AppController(dbService, uiService);
+  const modalService = new ModalService();
 
+  const app = new AppController(dbService, uiService, modalService);
   app.init();
+
+  const geoService = new GeoLocationService('val-location');
+  geoService.init();
 });
-
-// Function to display the consolidated modal
-function showRegistrationModal(role, token, landlordEmail) {
-  const modal = document.getElementById('customModal');
-  const modalBody = document.getElementById('modalBody');
-  const closeBtn = document.getElementById('modalCloseBtn');
-
-  // Build the clean HTML structure inside the text box
-  modalBody.innerHTML = `
-    <p><strong>Role:</strong> ${role}</p>
-    <p><strong>Secure Login ID:</strong> <span style="color: #c8a261; font-family: monospace;">${token}</span></p>
-    <p><strong>Linked Landlord:</strong> ${landlordEmail}</p>
-    <p style="font-size: 0.9rem; color: #aaa; margin-top: 15px;">
-      Use this secure alphanumeric short token to enter your portal dashboard.
-    </p>
-  `;
-
-  // Show the modal by removing the hidden class
-  modal.classList.remove('hidden');
-
-  // Close event listener
-  closeBtn.onclick = function () {
-    modal.classList.add('hidden');
-    // Optional: redirect user or clear input form fields here
-  };
-}
-
-// --- Example Usage inside your workflow ---
-// script.js triggered after Supabase finishes registry processing
-const mockRole = 'Tenant Resident';
-const mockToken = 'th7609';
-const mockLandlord = 'gakumuthomas@gmail.com';
-
-// Trigger it cleanly
-showRegistrationModal(mockRole, mockToken, mockLandlord);
